@@ -122,14 +122,14 @@ export default countryList=[
     },
     {
         "id": 1562822,
-        "name": "Socialist Republic of Vietnam",
+        "name": "Việt Nam",
         "country": "VN",
         "coord":
         {
             "lon": 107.833328,
             "lat": 16.16667
         },
-        "name_standard": "SOCIALIST REPUBLIC OF VIETNAM"
+        "name_standard": "VIỆT NAM"
     },
     {
         "id": 1591793,
@@ -538,17 +538,17 @@ export default countryList=[
         },
         "name_standard": "LAO CAI"
     },
-    {
-        "id": 1905699,
-        "name": "Tỉnh Hưng Yên",
-        "country": "VN",
-        "coord":
-        {
-            "lon": 106.083328,
-            "lat": 20.83333
-        },
-        "name_standard": "TINH HUNG YEN"
-    },
+    // {
+    //     "id": 1905699,
+    //     "name": "Tỉnh Hưng Yên",
+    //     "country": "VN",
+    //     "coord":
+    //     {
+    //         "lon": 106.083328,
+    //         "lat": 20.83333
+    //     },
+    //     "name_standard": "TINH HUNG YEN"
+    // },
     {
         "id": 1580142,
         "name": "Hung Yen",
@@ -650,14 +650,14 @@ export default countryList=[
     },
     {
         "id": 1905099,
-        "name": "Huyện Ðiện Biên",
+        "name": "Tỉnh Ðiện Biên",
         "country": "VN",
         "coord":
         {
             "lon": 102.933327,
             "lat": 21.33333
         },
-        "name_standard": "HUYEN DIEN BIEN"
+        "name_standard": "TINH DIEN BIEN"
     },
     {
         "id": 1584661,

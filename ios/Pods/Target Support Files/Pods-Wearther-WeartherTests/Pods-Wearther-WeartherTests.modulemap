@@ -1,0 +1,6 @@
+module Pods_Wearther_WeartherTests {
+  umbrella header "Pods-Wearther-WeartherTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

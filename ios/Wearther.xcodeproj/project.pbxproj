@@ -64,6 +64,14 @@
 		4F5F06C30663F51E427574D1 /* libPods-Wearther.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wearther.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD628CE4D862DDB3AD68DF6 /* Pods-Wearther.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther.debug.xcconfig"; path = "Target Support Files/Pods-Wearther/Pods-Wearther.debug.xcconfig"; sourceTree = "<group>"; };
 		5C02A3566E5103E8DC45853C /* Pods-Wearther-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Wearther-tvOSTests/Pods-Wearther-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD41131C2465A5B400E1562C /* libReact-RCTAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD41131E2465A5B400E1562C /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4113202465A5B400E1562C /* libReact-RCTImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4113222465A5B400E1562C /* libReact-RCTLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4113242465A5B400E1562C /* libReact-RCTNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4113262465A5B400E1562C /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4113282465A5B400E1562C /* libReact-RCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTText.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD41132A2465A5B400E1562C /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B015C37220E0EF30797FA354 /* Pods-Wearther.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther.release.xcconfig"; path = "Target Support Files/Pods-Wearther/Pods-Wearther.release.xcconfig"; sourceTree = "<group>"; };
 		B12F3AEC391BE3189519EDB5 /* Pods-Wearther-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Wearther-tvOSTests/Pods-Wearther-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8BCEDC9DAA8FE53F105FDDA /* Pods-Wearther-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Wearther-tvOS/Pods-Wearther-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +156,14 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD41131C2465A5B400E1562C /* libReact-RCTAnimation.a */,
+				AD41131E2465A5B400E1562C /* libReact-RCTBlob.a */,
+				AD4113202465A5B400E1562C /* libReact-RCTImage.a */,
+				AD4113222465A5B400E1562C /* libReact-RCTLinking.a */,
+				AD4113242465A5B400E1562C /* libReact-RCTNetwork.a */,
+				AD4113262465A5B400E1562C /* libReact-RCTSettings.a */,
+				AD4113282465A5B400E1562C /* libReact-RCTText.a */,
+				AD41132A2465A5B400E1562C /* libReact-RCTVibration.a */,
 				03D7A8AB246004DE0026046B /* libRNGestureHandler.a */,
 				03D7A8A9246004D20026046B /* libreact-native-safe-area-context.a */,
 				03D7A8A7246001630026046B /* libRNGestureHandler.a */,

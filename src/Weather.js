@@ -6,10 +6,12 @@ import {
   View,
   TextInput,
   ScrollView,
+  ImageBackground,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import countryList from '../country';
+const img = {uri:"https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"};
 export default class FetchExample extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,11 @@ export default class FetchExample extends React.Component {
       text: '',
     };
   }
-
+  static navigationOptions = {
+    header: null,
+    
+    
+    };
   setSearchText(event) {
     let searchText = event.nativeEvent.text;
     this.setState({text: searchText});
@@ -57,8 +63,9 @@ export default class FetchExample extends React.Component {
   //       alert("error");
   //     }
   //   }
-  onPressData = (id) => {
-    this.props.navigation.navigate('Detal', {id});
+  onPressData = (lon, lat) => {
+    console.log("dssd"+lon +"lat"+lat)
+    this.props.navigation.navigate('Detal', {lon,lat});
     // this.setState({isLoading:true})
     // try {
     //   const response = await fetch(
@@ -99,51 +106,68 @@ export default class FetchExample extends React.Component {
     //     )
     //   })
     // });
-    return (
-      <View
-        style={{
-          flex: 1,
-          padding: 20,
-          alignContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#ffbf00',
-        }}>
-        <View style={{flex:0.1}}>
-          <TextInput
-            placeholder="Please input ...."
-            style={{
-              width: 380,
-              height: 55,
-              fontSize: 19,
-              borderWidth: 1,
-              borderColor: 'black',
-              paddingLeft: 10,
-            }}
-            onChange={this.setSearchText.bind(this)}
-          />
+      return (
+        <View style={styles.container}>
+          <ImageBackground style={styles.container} source={img}>
+            <View style={styles.input}>
+            <TextInput
+              placeholder="Please input ...."
+              style={styles.textInput}
+              onChange={this.setSearchText.bind(this)}
+            />
+          </View>
+          <View style={{flex:0.5,alignItems:'center',}}>
+            <ScrollView style={styles.listCountry}>
+              {this.state.data.map((item) => {
+                return (
+                  <TouchableOpacity onPress={() => this.onPressData(item.coord.lon, item.coord.lat)}>
+                    <Text style={styles.textCountry}>{item.name}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+          <View style={{flex:0.4}}>
+          
+          </View>
+          </ImageBackground>
+          
         </View>
-        <View style={{flex:0.21}}>
-          <ScrollView style={{marginTop: 12, width: 300, height: 30}}>
-            {this.state.data.map((item) => {
-              return (
-                <TouchableOpacity onPress={() => this.onPressData(item.id)}>
-                  <Text style={{fontSize: 20}}>{item.name}</Text>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
-        <View style={{flex:0.69}}>
 
-        </View>
-      </View>
-    );
+      )
+    
+  
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#ffbf00',
+    flex:1,
+    justifyContent:'center',
+    alignContent:'center',
+  },
+  textInput:{
+    backgroundColor:"white",
+    width: 380,
+    height: 55,
+    fontSize: 19,
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingLeft: 10,
+    borderRadius: 10,
+  },
+  input:{
+    flex:0.1, 
+    alignItems:'center',
+    paddingTop:10,
+  },
+  listCountry:{
+    marginTop: 12, 
+    width: 300, 
+    height: 30, 
+  },
+  textCountry:{
+    
+    fontSize: 25,
+    fontWeight:'300'
   },
 });

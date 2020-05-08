@@ -1,58 +1,72 @@
 //import liraries
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ActivityIndicator,
   Image,
+  ImageBackground,
   ScrollView,
 } from 'react-native';
-import {min} from 'react-native-reanimated';
+import getWeatherBackgroundImage from '../index';
+import { min } from 'react-native-reanimated';
+import moment from 'moment';
 // import { ScrollView } from "react-native-gesture-handler";
 // import { Item } from "react-native/Libraries/Components/Picker/Picker";
 
 // create a component
+const img = { uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" };
 class MyClass extends Component {
   constructor(props) {
     super(props);
-    this.state = {isLoading: true, 
+    this.state = {
+      isLoading: true,
       city: {},
-       weather: [],
-        // hour: [],
-        convdataTime:" ",
-      };
+      weather: [],
+      temp: "",
+      main: {},
+      convdataTime: " ",
+    };
   }
 
-  async componentDidMount() {
-    const id = this.props.navigation.getParam('id');
-    try {
-      const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?appid=b807789d6524ad85376b5961cc402be8&units=metric&id=${id}`,
-      );
-      const responseJson = await response.json();
-      // alert(JSON.stringify(responseJson));
-      if (responseJson) {
-        this.setState({
-          list: responseJson.list,
-          city: responseJson.city,
-          isLoading: false,
-        });
-        // console.log(this.state.city);
-      }
-    } catch (error) {
-      console.log(error);
-      this.setState({isLoading: false});
-      alert('error');
-    }
+  static navigationOptions = {
+    header: null,
 
-    const lon = this.state.city.coord.lon;
-    const lat = this.state.city.coord.lat;
-    console.log(lon);
-    console.log(lat);
+
+  };
+  async componentDidMount() {
+    const lon = this.props.navigation.getParam('lon');
+    const lat = this.props.navigation.getParam('lat');
+    // console.log(lon);
+    // const id = this.props.navigation.getParam('id');
+    // try {
+    //   const response = await fetch(
+    //     `http://api.openweathermap.org/data/2.5/forecast?appid=b807789d6524ad85376b5961cc402be8&units=metric&id=${id}`,
+    //   );
+    //   const responseJson = await response.json();
+    //   // alert(JSON.stringify(responseJson));
+    //   if (responseJson) {
+    //     this.setState({
+    //       list: responseJson.list,
+    //       city: responseJson.city,
+    //       isLoading: false,
+    //     });
+    //     console.log(this.state.city);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   this.setState({isLoading: false});
+    //   alert('error');
+    // }
+
+    // const lon = this.state.city.coord.lon;
+    // const lat = this.state.city.coord.lat;
+    // console.log(lon);
+    // console.log(lat);
     try {
       const responseWeather = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3de6162d3745365b168ade2bbe4e1d66`,
+        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3de6162d3745365b168ade2bbe4e1d66&units=metric`,
       );
       const responseJsonWeather = await responseWeather.json();
       // alert(JSON.stringify(responseJsonWeather));
@@ -60,137 +74,131 @@ class MyClass extends Component {
         this.setState({
           weather: responseJsonWeather.weather,
           dt: responseJsonWeather.dt,
+          main: responseJsonWeather.main,
+          city: responseJsonWeather.name,
           isLoading: false,
         });
-        // console.log(this.state.city);
+
+        // console.log("huuj"+this.state.main.temp);
+        // console.log(this.state.weather.map((item) => {return item.weather.description}));
       }
     } catch (error) {
       console.log(error);
-      this.setState({isLoading: false});
+      this.setState({ isLoading: false });
       alert('error');
     }
-  }
-
-  convert = () => {
-    // Unixtimestamp
-    let unixtimestamp = this.state.dt;
-console.log(unixtimestamp);
-    // Months array
-    let months_arr = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-
-    // Convert timestamp to milliseconds
-    let date = new Date(unixtimestamp * 1000);
-
-    // Year
-    let year = date.getFullYear();
-
-    // Month
-    let month = months_arr[date.getMonth()];
-
-    // Day
-    let day = date.getDate();
-
-    // Hours
-    let hours = date.getHours();
-
-    // Minutes
-    let minutes = '0' + date.getMinutes();
-
-    // Seconds
-    let seconds = '0' + date.getSeconds();
-    let convdataTim =
-    month +
-    '-' +
-    day +
-    '-' +
-    year +
-    ' ' +
-    hours +
-    ':' +
-    minutes.substr(-2) +
-    ':' +
-    seconds.substr(-2)
-    console.log("hello"+convdataTim)
-    // Display date time in MM-dd-yyyy h:m:s format
-     this.setState({convdataTime : convdataTim
-     });
   };
 
   render() {
-    if (this.state.isLoading) {
+    const { main, isLoading, city, weather } = this.state
+    if (isLoading) {
       return (
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator size="large" color="red" />
-        </View>
+        <ImageBackground style={styles.container} source={img}>
+          <View style={{ padding: 20 }}>
+            <ActivityIndicator size="large" color="red" />
+          </View>
+        </ImageBackground>
+
       );
     }
-    // return this.state.list.map(item => {
-    //   return (
-    //     <View><Text>{item.dt}</Text></View>
-    //   )
-    // })
+
+
     return (
-      <View style={styles.Header}>
-        <Text style={{fontSize: 30}}>{this.state.city.name}</Text>
-        <Text>lat : {this.state.city.coord.lat}</Text>
-        <Text>long: {this.state.city.coord.lon}</Text>
-        <Text>{"hello"+this.state.convdataTime}</Text>
-        <View>
-          <View>
-            {this.state.weather.map((i) => {
-              return <Text>Thoi tiet: {i.main}</Text>;
-            })}
+      <ImageBackground style={styles.container} source={img}>
+        <View style={styles.header}></View>
+        <View style={styles.body}>
+          <View style={styles.city}>
+            <Text style={styles.textCity}>{city}</Text>
+          </View >
+          {/* <View style={styles.date}>
+             <Text style={styles.textDate}>{moment().format('Do MMMM YYYY')}</Text>
+          </View> */}
+          <View style={styles.icons}>
+            <Text style={styles.textIcons}>Icon nè</Text>
           </View>
-          <ScrollView style={{width: 300}}>
-            {this.state.list.map((item) => {
-              return item.weather.map((it) => {
-                return (
-                  <View>
-                    {/* <View>{this.timeStamp(item.dt, it.main)}</View> */}
-                    {/* <Text>{item.dt_txt}</Text>
-                    <Text>{item.dt_txt.split(' ')[0]}</Text>
-                    <Text>{it.main}</Text> */}
-                    <View>
-                      {/* <Text>{item.dt_txt.split(" ")[0]}</Text> */}
-                      {/* {this.DateFunction(item.dt_txt)} */}
-                    </View>
-                  </View>
-                );
-              });
-            })}
-          </ScrollView>
+          <View style={styles.discription}>{weather.map((item) => {
+            return (
+              <Text style={styles.textDescription}>{item.main}</Text>
+            )
+          })}
+          </View>
+          <View style={styles.temp}>
+            <Text style={styles.textTemp}>
+              {Math.ceil(main.temp) + "°C"}
+            </Text>
+          </View>
         </View>
-      </View>
+        <View style={styles.footer}></View>
+
+
+      </ImageBackground>
+
+
     );
   }
 }
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    backgroundColor: '#ffbf00',
   },
-  Header: {
+  header: {
+    flex:0.1,
+  },
+  body:{
+    flex:0.8,
+  },
+  city: {
+    flex:0.1,
     alignItems: 'center',
-    // justifyContent: "center",
-    backgroundColor: '#ffbf00',
   },
+  temp: {
+    flex:0.2,
+    alignItems: 'center',
+
+  },
+  discription: {
+    flex:0.1,
+    alignItems: 'center',
+  },
+  date:{
+    flex:0.1,
+    alignItems: 'center',
+  },
+  
+  icons:{
+    flex:0.2,
+    alignItems: 'center',
+  },
+  textIcons:{
+    
+  },
+  textCity: {
+    fontSize: 40,
+    fontWeight: "400",
+    fontFamily: 'Cochin',
+  },
+  textDate:{
+    fontSize: 20,
+    fontWeight: "400",
+    fontFamily: 'Cochin',
+  },
+  textTemp: {
+    fontSize: 100,
+    fontWeight: 'normal',
+    fontFamily: 'Cochin',
+  },
+  textDescription: {
+    fontSize: 30,
+    fontWeight: "500"
+  },
+  footer:{
+    flex:0.1,
+
+},
+
 });
 
-//make this component available to the app
+
+
 export default MyClass;
