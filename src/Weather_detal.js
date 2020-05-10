@@ -49,8 +49,21 @@ class MyClass extends Component {
       const responseJsonWeather = await responseWeather.json();
       // alert(JSON.stringify(responseJsonWeather));
       if (responseJsonWeather) {
-        responseJsonWeather.weather[0].main === "Clouds" ? this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"}) : null
+        // responseJsonWeather.weather[0].main === "Clouds" ? this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"}) : null
+        const weatherImage = responseJsonWeather.weather[0].main;
+        switch (weatherImage) {
+          case "Clear":
+            this.setState({ clouds: "./Image/sun.png" });
+            break;
+          case "Clouds":
+            this.setState({ clouds: "./Image/sun.png" });
+            break;
+          case "Rain":
+            this.setState({ clouds: "./Image/sun.png" });
+            break;
+        }
         await this.setState({
+          weather: responseJsonWeather.weather,
           dt: responseJsonWeather.dt,
           main: responseJsonWeather.main,
           city: responseJsonWeather.name,
@@ -58,6 +71,7 @@ class MyClass extends Component {
         });
       }
     } catch (error) {
+      ß
       console.log(error);
       this.setState({ isLoading: false });
     }
@@ -66,7 +80,7 @@ class MyClass extends Component {
     console.log("weather la: " + main)
     if (main === "Clouds") {
       // alert(main)
-      this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"});
+      this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png" });
     }
   }
   render() {
@@ -74,7 +88,7 @@ class MyClass extends Component {
     console.log(main)
     console.log(city)
     console.log(weather)
-    console.log("a",this.state.clouds)
+    console.log("a", this.state.clouds)
     if (isLoading) {
       return (
         <ImageBackground style={styles.container} source={img}>
@@ -93,15 +107,17 @@ class MyClass extends Component {
             <Text style={styles.textCity}>{city}</Text>
           </View >
           <View style={styles.date}>
-             <Text style={styles.textDate}>{moment().format('Do MMMM YYYY')}</Text>
+            <Text style={styles.textDate}>{moment().format('Do MMMM YYYY')}</Text>
           </View>
           <View style={styles.icons}>
             <Text style={styles.textIcons}>Icon nè</Text>
             <Image
               style={styles.tinyLogo}
-              source={{
-                uri: this.state.clouds, 
-              }}
+              source={require(`${this.state.clouds}`)}
+            // source={{
+            //   uri: this.state.clouds, 
+
+            // }}
             />
           </View>
 
@@ -121,7 +137,7 @@ class MyClass extends Component {
           </View>
         </View>
         <View style={styles.footer}></View>
-     
+
 
 
       </ImageBackground>
