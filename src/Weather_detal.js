@@ -8,6 +8,7 @@ import {
   Image,
   ImageBackground,
   ScrollView,
+  ClippingRectangle,
 } from 'react-native';
 import getWeatherBackgroundImage from '../index';
 import { min } from 'react-native-reanimated';
@@ -17,6 +18,7 @@ import moment from 'moment';
 
 // create a component
 const img = { uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" };
+
 class MyClass extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +29,7 @@ class MyClass extends Component {
       temp: "",
       main: {},
       convdataTime: " ",
+      clouds: "",
     };
   }
 
@@ -38,32 +41,7 @@ class MyClass extends Component {
   async componentDidMount() {
     const lon = this.props.navigation.getParam('lon');
     const lat = this.props.navigation.getParam('lat');
-    // console.log(lon);
-    // const id = this.props.navigation.getParam('id');
-    // try {
-    //   const response = await fetch(
-    //     `http://api.openweathermap.org/data/2.5/forecast?appid=b807789d6524ad85376b5961cc402be8&units=metric&id=${id}`,
-    //   );
-    //   const responseJson = await response.json();
-    //   // alert(JSON.stringify(responseJson));
-    //   if (responseJson) {
-    //     this.setState({
-    //       list: responseJson.list,
-    //       city: responseJson.city,
-    //       isLoading: false,
-    //     });
-    //     console.log(this.state.city);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   this.setState({isLoading: false});
-    //   alert('error');
-    // }
 
-    // const lon = this.state.city.coord.lon;
-    // const lat = this.state.city.coord.lat;
-    // console.log(lon);
-    // console.log(lat);
     try {
       const responseWeather = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3de6162d3745365b168ade2bbe4e1d66&units=metric`,
@@ -71,26 +49,32 @@ class MyClass extends Component {
       const responseJsonWeather = await responseWeather.json();
       // alert(JSON.stringify(responseJsonWeather));
       if (responseJsonWeather) {
-        this.setState({
-          weather: responseJsonWeather.weather,
+        responseJsonWeather.weather[0].main === "Clouds" ? this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"}) : null
+        await this.setState({
           dt: responseJsonWeather.dt,
           main: responseJsonWeather.main,
           city: responseJsonWeather.name,
           isLoading: false,
         });
-
-        // console.log("huuj"+this.state.main.temp);
-        // console.log(this.state.weather.map((item) => {return item.weather.description}));
       }
     } catch (error) {
       console.log(error);
       this.setState({ isLoading: false });
-      alert('error');
     }
   };
-
+  getWeather = (main) => {
+    console.log("weather la: " + main)
+    if (main === "Clouds") {
+      // alert(main)
+      this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"});
+    }
+  }
   render() {
     const { main, isLoading, city, weather } = this.state
+    console.log(main)
+    console.log(city)
+    console.log(weather)
+    console.log("a",this.state.clouds)
     if (isLoading) {
       return (
         <ImageBackground style={styles.container} source={img}>
@@ -101,8 +85,6 @@ class MyClass extends Component {
 
       );
     }
-
-
     return (
       <ImageBackground style={styles.container} source={img}>
         <View style={styles.header}></View>
@@ -110,15 +92,25 @@ class MyClass extends Component {
           <View style={styles.city}>
             <Text style={styles.textCity}>{city}</Text>
           </View >
-          {/* <View style={styles.date}>
+          <View style={styles.date}>
              <Text style={styles.textDate}>{moment().format('Do MMMM YYYY')}</Text>
-          </View> */}
+          </View>
           <View style={styles.icons}>
             <Text style={styles.textIcons}>Icon nè</Text>
+            <Image
+              style={styles.tinyLogo}
+              source={{
+                uri: this.state.clouds, 
+              }}
+            />
           </View>
+
           <View style={styles.discription}>{weather.map((item) => {
             return (
-              <Text style={styles.textDescription}>{item.main}</Text>
+              <View>
+                <Text style={styles.textDescription}>{item.main}</Text>
+                {/* {this.getWeather(item.main)} */}
+              </View>
             )
           })}
           </View>
@@ -129,6 +121,7 @@ class MyClass extends Component {
           </View>
         </View>
         <View style={styles.footer}></View>
+     
 
 
       </ImageBackground>
@@ -143,42 +136,45 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex:0.1,
+    flex: 0.1,
   },
-  body:{
-    flex:0.8,
+  body: {
+    flex: 0.8,
   },
   city: {
-    flex:0.1,
+    flex: 0.1,
     alignItems: 'center',
   },
   temp: {
-    flex:0.2,
+    flex: 0.2,
     alignItems: 'center',
 
   },
   discription: {
-    flex:0.1,
+    flex: 0.1,
     alignItems: 'center',
   },
-  date:{
-    flex:0.1,
+  date: {
+    flex: 0.1,
     alignItems: 'center',
   },
-  
-  icons:{
-    flex:0.2,
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  icons: {
+    flex: 0.2,
     alignItems: 'center',
   },
-  textIcons:{
-    
+  textIcons: {
+
   },
   textCity: {
     fontSize: 40,
     fontWeight: "400",
     fontFamily: 'Cochin',
   },
-  textDate:{
+  textDate: {
     fontSize: 20,
     fontWeight: "400",
     fontFamily: 'Cochin',
@@ -192,10 +188,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "500"
   },
-  footer:{
-    flex:0.1,
+  footer: {
+    flex: 0.1,
 
-},
+  },
 
 });
 

@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   Text,
   View,
+  Image,
   TextInput,
   ScrollView,
   ImageBackground,
@@ -11,7 +12,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import countryList from '../country';
-const img = {uri:"https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"};
+
+const img = { uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" };
 export default class FetchExample extends React.Component {
   constructor(props) {
     super(props);
@@ -26,12 +28,12 @@ export default class FetchExample extends React.Component {
   }
   static navigationOptions = {
     header: null,
-    
-    
-    };
+
+
+  };
   setSearchText(event) {
     let searchText = event.nativeEvent.text;
-    this.setState({text: searchText});
+    this.setState({ text: searchText });
     let data = this.state.country;
     searchText = searchText.trim().toLowerCase();
     data = data.filter((item) => {
@@ -64,8 +66,8 @@ export default class FetchExample extends React.Component {
   //     }
   //   }
   onPressData = (lon, lat) => {
-    console.log("dssd"+lon +"lat"+lat)
-    this.props.navigation.navigate('Detal', {lon,lat});
+    console.log("dssd" + lon + "lat" + lat)
+    this.props.navigation.navigate('Detal', { lon, lat });
     // this.setState({isLoading:true})
     // try {
     //   const response = await fetch(
@@ -92,7 +94,7 @@ export default class FetchExample extends React.Component {
     console.log(this.state.list);
     if (this.state.isLoading) {
       return (
-        <View style={{flex: 1, padding: 20}}>
+        <View style={{ flex: 1, padding: 20 }}>
           <ActivityIndicator size="large" color="red" />
         </View>
       );
@@ -106,17 +108,17 @@ export default class FetchExample extends React.Component {
     //     )
     //   })
     // });
-      return (
-        <View style={styles.container}>
-          <ImageBackground style={styles.container} source={img}>
-            <View style={styles.input}>
+    return (
+      <View style={styles.container}>
+        <ImageBackground style={styles.container} source={img}>
+          <View style={styles.input}>
             <TextInput
               placeholder="Please input ...."
               style={styles.textInput}
               onChange={this.setSearchText.bind(this)}
             />
           </View>
-          <View style={{flex:0.5,alignItems:'center',}}>
+          <View style={{ flex: 0.9, alignItems: 'center', }}>
             <ScrollView style={styles.listCountry}>
               {this.state.data.map((item) => {
                 return (
@@ -127,26 +129,27 @@ export default class FetchExample extends React.Component {
               })}
             </ScrollView>
           </View>
-          <View style={{flex:0.4}}>
-          
-          </View>
-          </ImageBackground>
-          
-        </View>
+          <View style={{ flex:0.05  }}>
 
-      )
-    
-  
+          </View>
+        </ImageBackground>
+
+      </View>
+
+    )
+
+
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    justifyContent:'center',
-    alignContent:'center',
+    flex: 1,
+
+    justifyContent: 'center',
+    alignContent: 'center',
   },
-  textInput:{
-    backgroundColor:"white",
+  textInput: {
+    backgroundColor: "white",
     width: 380,
     height: 55,
     fontSize: 19,
@@ -155,19 +158,19 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 10,
   },
-  input:{
-    flex:0.1, 
-    alignItems:'center',
-    paddingTop:10,
+  input: {
+    flex: 0.1,
+    alignItems: 'center',
+    paddingTop: 10,
   },
-  listCountry:{
-    marginTop: 12, 
-    width: 300, 
-    height: 30, 
+  listCountry: {
+    marginTop: 12,
+    width: 300,
+    height: 30,
   },
-  textCountry:{
-    
+  textCountry: {
+
     fontSize: 25,
-    fontWeight:'300'
+    fontWeight: '300'
   },
 });
