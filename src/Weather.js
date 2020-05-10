@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import countryList from '../country';
 
-const img = { uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" };
+const img = { uri: "https://i.ibb.co/QpvyPRL/OrangeGB.png" };
 export default class FetchExample extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,13 @@ export default class FetchExample extends React.Component {
     };
   }
   static navigationOptions = {
-    header: null,
+    // header: null,
+   
+    title: "Weather",
+    headerTitleStyle: {
+      fontSize: 30,
+      color: "black"
+    }
 
 
   };
@@ -119,7 +125,7 @@ export default class FetchExample extends React.Component {
             />
           </View>
           <View style={{ flex: 0.9, alignItems: 'center', }}>
-            <ScrollView style={styles.listCountry}>
+            <ScrollView style={styles.listCountry} showsVerticalScrollIndicator={false}>
               {this.state.data.map((item) => {
                 return (
                   <TouchableOpacity onPress={() => this.onPressData(item.coord.lon, item.coord.lat)}>
@@ -164,13 +170,13 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   listCountry: {
-    marginTop: 12,
+    // marginTop: 1,
     width: 300,
     height: 30,
   },
   textCountry: {
-
+color:'white',
     fontSize: 25,
-    fontWeight: '300'
+    fontWeight: '500'
   },
 });

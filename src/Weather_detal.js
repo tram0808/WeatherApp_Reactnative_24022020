@@ -13,11 +13,8 @@ import {
 import getWeatherBackgroundImage from '../index';
 import { min } from 'react-native-reanimated';
 import moment from 'moment';
-// import { ScrollView } from "react-native-gesture-handler";
-// import { Item } from "react-native/Libraries/Components/Picker/Picker";
 
-// create a component
-const img = { uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" };
+// const img = { uri: "https://i.ibb.co/QpvyPRL/OrangeGB.png" };
 
 class MyClass extends Component {
   constructor(props) {
@@ -28,8 +25,8 @@ class MyClass extends Component {
       weather: [],
       temp: "",
       main: {},
-      convdataTime: " ",
       clouds: "",
+      uri1: ""
     };
   }
 
@@ -53,13 +50,13 @@ class MyClass extends Component {
         const weatherImage = responseJsonWeather.weather[0].main;
         switch (weatherImage) {
           case "Clear":
-            this.setState({ clouds: "./Image/sun.png" });
+            this.setState({ clouds: "https://i.ibb.co/6PHdLRM/sunny-day.png", uri1: "https://i.ibb.co/QpvyPRL/OrangeGB.png" });
             break;
           case "Clouds":
-            this.setState({ clouds: "./Image/sun.png" });
+            this.setState({ clouds: "https://i.ibb.co/J52XLWy/overcast-day.png", uri1: "https://i.ibb.co/8BGSBBS/BlueBG.png" });
             break;
           case "Rain":
-            this.setState({ clouds: "./Image/sun.png" });
+            this.setState({ clouds: "https://i.ibb.co/PMYScqN/rainy-day.png", uri1: "https://i.ibb.co/ZB4vY3B/grayBG.png" });
             break;
         }
         await this.setState({
@@ -76,13 +73,7 @@ class MyClass extends Component {
       this.setState({ isLoading: false });
     }
   };
-  getWeather = (main) => {
-    console.log("weather la: " + main)
-    if (main === "Clouds") {
-      // alert(main)
-      this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png" });
-    }
-  }
+
   render() {
     const { main, isLoading, city, weather } = this.state
     console.log(main)
@@ -91,8 +82,8 @@ class MyClass extends Component {
     console.log("a", this.state.clouds)
     if (isLoading) {
       return (
-        <ImageBackground style={styles.container} source={img}>
-          <View style={{ padding: 20 }}>
+        <ImageBackground style={styles.container} source={{ uri: this.state.uri1 }}>
+          <View style={{ padding: 40 }}>
             <ActivityIndicator size="large" color="red" />
           </View>
         </ImageBackground>
@@ -100,36 +91,37 @@ class MyClass extends Component {
       );
     }
     return (
-      <ImageBackground style={styles.container} source={img}>
-        <View style={styles.header}></View>
-        <View style={styles.body}>
+      <ImageBackground style={styles.container} source={{ uri: this.state.uri1 }}>
+        <View style={styles.header}>
           <View style={styles.city}>
-            <Text style={styles.textCity}>{city}</Text>
+            <Text style={styles.nameCity}>{city}</Text>
           </View >
           <View style={styles.date}>
             <Text style={styles.textDate}>{moment().format('Do MMMM YYYY')}</Text>
           </View>
-          <View style={styles.icons}>
-            <Text style={styles.textIcons}>Icon nè</Text>
+        </View>
+        <View style={styles.body}>
+
+          <View style={styles.imageWeather}>
+            {/* <Text style={styles.textIcons}>Icon nè</Text> */}
             <Image
               style={styles.tinyLogo}
-              source={require(`${this.state.clouds}`)}
-            // source={{
-            //   uri: this.state.clouds, 
-
-            // }}
+              resizeMode="contain"
+              // source={require(`${this.state.clouds}`)}
+              source={{
+                uri: this.state.clouds,
+              }}
             />
           </View>
-
-          <View style={styles.discription}>{weather.map((item) => {
+          {/* <View style={styles.discription}>{weather.map((item) => {
             return (
               <View>
-                <Text style={styles.textDescription}>{item.main}</Text>
-                {/* {this.getWeather(item.main)} */}
-              </View>
+                <Text style={styles.textDescription}>{item.main}</Text> */}
+          {/* {this.getWeather(item.main)} */}
+          {/* </View>
             )
           })}
-          </View>
+          </View> */}
           <View style={styles.temp}>
             <Text style={styles.textTemp}>
               {Math.ceil(main.temp) + "°C"}
@@ -150,64 +142,85 @@ class MyClass extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
   },
   header: {
-    flex: 0.1,
-  },
-  body: {
-    flex: 0.8,
+    flex: 0.4,
+    // justifyContent:"center",
+    // top:30,
+
+    alignItems: "center",
   },
   city: {
-    flex: 0.1,
-    alignItems: 'center',
-  },
-  temp: {
+    top: 80,
     flex: 0.2,
+    // alignItems: 'center',
+  },
+  date: {
+    top: 70,
+    flex: 0.2,
+    // alignItems: 'center',
+  },
+  body: {
+    top: -250,
+    flex: 0.6,
+    // justifyContent:"center",
+    // alignItems:"center",
+  },
+
+  temp: {
+    // flex: 0.1,
+    top: 370,
     alignItems: 'center',
 
   },
   discription: {
-    flex: 0.1,
+    // flex: 0.1,
     alignItems: 'center',
   },
-  date: {
-    flex: 0.1,
-    alignItems: 'center',
-  },
+
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: 270,
+    height: 270,
+    // resizeMode: 'stretch',
   },
-  icons: {
+  imageWeather: {
+    top: 150,
     flex: 0.2,
     alignItems: 'center',
   },
   textIcons: {
 
   },
-  textCity: {
+  nameCity: {
     fontSize: 40,
-    fontWeight: "400",
-    fontFamily: 'Cochin',
+    fontWeight: "900",
+    // fontFamily: '',
+    color: 'white'
+    // fontFamily:'HL Slapstick Comic'
   },
   textDate: {
-    fontSize: 20,
-    fontWeight: "400",
+    fontSize: 25,
+    fontWeight: "900",
     fontFamily: 'Cochin',
+    color: 'white'
+
   },
   textTemp: {
-    fontSize: 100,
+    fontSize: 50,
     fontWeight: 'normal',
     fontFamily: 'Cochin',
+    color: 'white'
+
   },
   textDescription: {
     fontSize: 30,
     fontWeight: "500"
   },
-  footer: {
-    flex: 0.1,
+  // footer: {
+  //   flex: 0.2,
 
-  },
+  // },
 
 });
 

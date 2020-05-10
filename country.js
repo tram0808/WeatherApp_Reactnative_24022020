@@ -54,17 +54,7 @@ export default countryList=[
         },
         "name_standard": "TINH PHU YEN"
     },
-    {
-        "id": 1563241,
-        "name": "Uong Bi",
-        "country": "VN",
-        "coord":
-        {
-            "lon": 106.783333,
-            "lat": 21.033331
-        },
-        "name_standard": "UONG BI"
-    },
+
     {
         "id": 1577995,
         "name": "Lagi",
@@ -507,7 +497,7 @@ export default countryList=[
     },
     {
         "id": 1571067,
-        "name": "Phan Rang-Thap Cham",
+        "name": "Phan Rang",
         "country": "VN",
         "coord":
         {
@@ -727,7 +717,7 @@ export default countryList=[
     },
     {
         "id": 1586357,
-        "name": "Cam Pha Mines",
+        "name": "Cam Pha",
         "country": "VN",
         "coord":
         {
@@ -782,7 +772,7 @@ export default countryList=[
     },
     {
         "id": 1591474,
-        "name": "Thanh pho Bac Lieu",
+        "name": "Bac Lieu",
         "country": "VN",
         "coord":
         {
@@ -857,17 +847,7 @@ export default countryList=[
         },
         "name_standard": "XOM PHO"
     },
-    {
-        "id": 1580578,
-        "name": "Thành phố Hồ Chí Minh",
-        "country": "VN",
-        "coord":
-        {
-            "lon": 106.666672,
-            "lat": 10.83333
-        },
-        "name_standard": "THANH PHO HO CHI MINH"
-    },
+
     {
         "id": 1566083,
         "name": "Thanh pho Ho Chi Minh",
@@ -969,7 +949,7 @@ export default countryList=[
     },
     {
         "id": 1584534,
-        "name": "Tỉnh Bà Rịa-Vũng Tàu",
+        "name": "Bà Rịa",
         "country": "VN",
         "coord":
         {
@@ -1013,7 +993,7 @@ export default countryList=[
     },
     {
         "id": 1581298,
-        "name": "Haiphong",
+        "name": "Hai Phong",
         "country": "VN",
         "coord":
         {
@@ -1376,7 +1356,7 @@ export default countryList=[
     },
     {
         "id": 1565033,
-        "name": "Tỉnh Thừa Thiên-Huế",
+        "name": "Huế",
         "country": "VN",
         "coord":
         {
