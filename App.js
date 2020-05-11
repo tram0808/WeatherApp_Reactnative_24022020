@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+
 
 
 import Weather from './src/Weather';

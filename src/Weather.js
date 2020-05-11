@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Component } from "react";
+
 import {
-  FlatList,
   ActivityIndicator,
   Text,
   View,
-  Image,
   TextInput,
   ScrollView,
   ImageBackground,
@@ -27,12 +26,13 @@ export default class FetchExample extends React.Component {
     };
   }
   static navigationOptions = {
-    // header: null,
-   
+
+
     title: "Weather",
     headerTitleStyle: {
       fontSize: 30,
-      color: "black"
+      color: "black",
+      fontWeight:'700',
     }
 
 
@@ -50,49 +50,10 @@ export default class FetchExample extends React.Component {
     });
   }
 
-  //   async componentDidMount() {
-  //     this.setState({isLoading:true})
-  //     try {
-  //       const response = await fetch(
-  //         `http://api.openweathermap.org/data/2.5/forecast?appid=b807789d6524ad85376b5961cc402be8&units=metric&id=${id}`
-  //       );
-  //       const responseJson = await response.json();
-  //       alert(JSON.stringify(responseJson));
-  //       if (responseJson) {
-  //         this.setState({
-  //           list: responseJson.list,
-  //           city: responseJson.city,
-  //           isLoading: false
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //       this.setState({ isLoading: false });
-  //       alert("error");
-  //     }
-  //   }
   onPressData = (lon, lat) => {
     console.log("dssd" + lon + "lat" + lat)
     this.props.navigation.navigate('Detal', { lon, lat });
-    // this.setState({isLoading:true})
-    // try {
-    //   const response = await fetch(
-    //     `http://api.openweathermap.org/data/2.5/forecast?appid=b807789d6524ad85376b5961cc402be8&units=metric&id=${id}`
-    //   );
-    //   const responseJson = await response.json();
-    //   alert(JSON.stringify(responseJson));
-    //   if (responseJson) {
-    //     this.setState({
-    //       list: responseJson.list,
-    //       city: responseJson.city,
-    //       isLoading: false
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   this.setState({ isLoading: false });
-    //   alert("error");
-    // }
+
   };
 
   render() {
@@ -106,14 +67,7 @@ export default class FetchExample extends React.Component {
       );
     }
 
-    // get list weather
-    // return this.state.list.map(item => {
-    //   return item.weather.map(it=> {
-    //     return (
-    //       <View><Text>{it.main}</Text></View>
-    //     )
-    //   })
-    // });
+
     return (
       <View style={styles.container}>
         <ImageBackground style={styles.container} source={img}>
@@ -135,7 +89,7 @@ export default class FetchExample extends React.Component {
               })}
             </ScrollView>
           </View>
-          <View style={{ flex:0.05  }}>
+          <View style={{ flex: 0.05 }}>
 
           </View>
         </ImageBackground>
@@ -170,12 +124,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   listCountry: {
-    // marginTop: 1,
     width: 300,
     height: 30,
   },
   textCountry: {
-color:'white',
+    color: 'white',
     fontSize: 25,
     fontWeight: '500'
   },

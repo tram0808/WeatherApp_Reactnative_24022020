@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* WeartherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WeartherTests.m */; };
-		03D7A8A8246001630026046B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D7A8A7246001630026046B /* libRNGestureHandler.a */; };
 		03D7A8AA246004D20026046B /* libreact-native-safe-area-context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D7A8A9246004D20026046B /* libreact-native-safe-area-context.a */; };
-		03D7A8AC246004DE0026046B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D7A8AB246004DE0026046B /* libRNGestureHandler.a */; };
 		117D6E143E0D2FAAFB9864FE /* libPods-Wearther.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5F06C30663F51E427574D1 /* libPods-Wearther.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -21,6 +19,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* WeartherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WeartherTests.m */; };
 		470D6D85D5B8CA7A974A7F6F /* libPods-Wearther-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32E2F0173AA3DA2CC5251C2 /* libPods-Wearther-tvOSTests.a */; };
+		AD8D06CB24698732008C4F28 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8D06CA24698732008C4F28 /* libRNGestureHandler.a */; };
 		C4FDB00CCBB50054C2518402 /* libPods-Wearther-WeartherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF435D59CD2123AA8A65E1F4 /* libPods-Wearther-WeartherTests.a */; };
 		FDB508FCB0B26111CD13974B /* libPods-Wearther-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 295B6FA4693B0CAD6652C6DF /* libPods-Wearther-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -72,6 +71,8 @@
 		AD4113262465A5B400E1562C /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4113282465A5B400E1562C /* libReact-RCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTText.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD41132A2465A5B400E1562C /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8D06C824698398008C4F28 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8D06CA24698732008C4F28 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B015C37220E0EF30797FA354 /* Pods-Wearther.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther.release.xcconfig"; path = "Target Support Files/Pods-Wearther/Pods-Wearther.release.xcconfig"; sourceTree = "<group>"; };
 		B12F3AEC391BE3189519EDB5 /* Pods-Wearther-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Wearther-tvOSTests/Pods-Wearther-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8BCEDC9DAA8FE53F105FDDA /* Pods-Wearther-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wearther-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Wearther-tvOS/Pods-Wearther-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,9 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D7A8AC246004DE0026046B /* libRNGestureHandler.a in Frameworks */,
+				AD8D06CB24698732008C4F28 /* libRNGestureHandler.a in Frameworks */,
 				03D7A8AA246004D20026046B /* libreact-native-safe-area-context.a in Frameworks */,
-				03D7A8A8246001630026046B /* libRNGestureHandler.a in Frameworks */,
 				117D6E143E0D2FAAFB9864FE /* libPods-Wearther.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +156,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD8D06CA24698732008C4F28 /* libRNGestureHandler.a */,
+				AD8D06C824698398008C4F28 /* libRNGestureHandler.a */,
 				AD41131C2465A5B400E1562C /* libReact-RCTAnimation.a */,
 				AD41131E2465A5B400E1562C /* libReact-RCTBlob.a */,
 				AD4113202465A5B400E1562C /* libReact-RCTImage.a */,

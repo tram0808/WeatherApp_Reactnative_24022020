@@ -7,14 +7,10 @@ import {
   ActivityIndicator,
   Image,
   ImageBackground,
-  ScrollView,
-  ClippingRectangle,
 } from 'react-native';
-import getWeatherBackgroundImage from '../index';
-import { min } from 'react-native-reanimated';
+
 import moment from 'moment';
 
-// const img = { uri: "https://i.ibb.co/QpvyPRL/OrangeGB.png" };
 
 class MyClass extends Component {
   constructor(props) {
@@ -44,9 +40,7 @@ class MyClass extends Component {
         `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3de6162d3745365b168ade2bbe4e1d66&units=metric`,
       );
       const responseJsonWeather = await responseWeather.json();
-      // alert(JSON.stringify(responseJsonWeather));
       if (responseJsonWeather) {
-        // responseJsonWeather.weather[0].main === "Clouds" ? this.setState({ clouds: "https://f0.pngfuel.com/png/319/4/weather-sticker-weather-png-clip-art.png"}) : null
         const weatherImage = responseJsonWeather.weather[0].main;
         switch (weatherImage) {
           case "Clear":
@@ -103,35 +97,20 @@ class MyClass extends Component {
         <View style={styles.body}>
 
           <View style={styles.imageWeather}>
-            {/* <Text style={styles.textIcons}>Icon nè</Text> */}
             <Image
               style={styles.tinyLogo}
               resizeMode="contain"
-              // source={require(`${this.state.clouds}`)}
               source={{
                 uri: this.state.clouds,
               }}
             />
           </View>
-          {/* <View style={styles.discription}>{weather.map((item) => {
-            return (
-              <View>
-                <Text style={styles.textDescription}>{item.main}</Text> */}
-          {/* {this.getWeather(item.main)} */}
-          {/* </View>
-            )
-          })}
-          </View> */}
           <View style={styles.temp}>
             <Text style={styles.textTemp}>
               {Math.ceil(main.temp) + "°C"}
             </Text>
           </View>
         </View>
-        <View style={styles.footer}></View>
-
-
-
       </ImageBackground>
 
 
@@ -146,58 +125,48 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 0.4,
-    // justifyContent:"center",
-    // top:30,
 
     alignItems: "center",
   },
   city: {
     top: 80,
     flex: 0.2,
-    // alignItems: 'center',
+
   },
   date: {
     top: 70,
     flex: 0.2,
-    // alignItems: 'center',
+
   },
   body: {
     top: -250,
     flex: 0.6,
-    // justifyContent:"center",
-    // alignItems:"center",
   },
 
   temp: {
-    // flex: 0.1,
     top: 370,
     alignItems: 'center',
 
   },
   discription: {
-    // flex: 0.1,
     alignItems: 'center',
   },
 
   tinyLogo: {
     width: 270,
     height: 270,
-    // resizeMode: 'stretch',
   },
   imageWeather: {
     top: 150,
     flex: 0.2,
     alignItems: 'center',
   },
-  textIcons: {
-
-  },
+  
   nameCity: {
     fontSize: 40,
     fontWeight: "900",
-    // fontFamily: '',
-    color: 'white'
-    // fontFamily:'HL Slapstick Comic'
+      color: 'white'
+  
   },
   textDate: {
     fontSize: 25,
@@ -217,12 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "500"
   },
-  // footer: {
-  //   flex: 0.2,
-
-  // },
-
-});
+  });
 
 
 

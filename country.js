@@ -1048,7 +1048,7 @@ export default countryList=[
     },
     {
         "id": 1584169,
-        "name": "Tỉnh Ðắc Lắk",
+        "name": "Tỉnh Dak Lak",
         "country": "VN",
         "coord":
         {
